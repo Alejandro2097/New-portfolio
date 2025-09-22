@@ -8,7 +8,7 @@ const SocialMedia = () => {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/alejandro-huertas',
+      url: 'https://www.linkedin.com/in/alejandro-huertas73/',
       icon: '/assets/linkedin.svg',
       description: 'Connect with me professionally',
       color: 'from-blue-500 to-blue-600',
@@ -26,7 +26,7 @@ const SocialMedia = () => {
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/alejandro_huertas',
+      url: 'https://x.com/alejo12381',
       icon: '/assets/twitter.svg',
       description: 'Follow me for updates and thoughts',
       color: 'from-sky-400 to-sky-500',
