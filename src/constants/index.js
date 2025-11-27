@@ -1,236 +1,657 @@
-export const navLinks = [
+// ==================== PROFILE DATA ====================
+const profile = {
+  name: "David Alejandro Huertas Castellanos",
+  shortName: "Alejandro",
+  role: "Full Stack Developer / Software Engineer",
+  location: "Bogotá, Colombia",
+  phone: "(+57) 301-695-8448",
+  email: "huertas20971@gmail.com",
+  website: "https://www.alejandro-huertas.com",
+  github: "https://github.com/Alejandro2097",
+  githubUsername: "Alejandro2097",
+  linkedin: "https://www.linkedin.com/in/alejandro-huertas",
+  linkedinHandle: "alejandro-huertas",
+  profileImage: "/images/alejo1.JPEG",
+  summary: [
+    "Full Stack Developer with 5+ years of professional experience building scalable, high-performance applications using Go (Golang), React, Node.js, and AWS.",
+    "Proven expertise delivering production-grade microservices for leading e-commerce and financial platforms including MercadoLibre, Scotiabank, and Banco de Bogotá.",
+    "Strong proficiency in REST/GraphQL APIs, gRPC, event-driven architectures (Kafka, Pub/Sub), and cloud-native DevOps practices.",
+    "Passionate about driving engineering excellence and continuous improvement."
+  ]
+};
+
+// ==================== EXPERIENCE DATA ====================
+const experience = [
   {
     id: 1,
-    name: 'Home',
-    href: '#home',
+    company: "MercadoLibre",
+    role: "Full Stack Developer (Backend Focus)",
+    location: "Bogotá, Colombia (Remote)",
+    period: "December 2023 – September 2025",
+    logo: "/images/mercadolibre-logo.png",
+    highlights: [
+      "Built Go (Golang) microservices for critical e-commerce flows (checkout, pricing, catalog)",
+      "Implemented REST/gRPC/Protobuf with event-driven architecture using Kafka and AWS SQS/SNS",
+      "Deployed on AWS (ECS, EKS, Lambda, S3, RDS) achieving 99.9% uptime",
+      "Optimized performance reducing response times from ~220ms to ~120ms",
+      "CI/CD with GitHub Actions, Terraform, observability with Prometheus, Grafana, OpenTelemetry"
+    ]
   },
   {
     id: 2,
-    name: 'About',
-    href: '#about',
+    company: "Scotiabank",
+    role: "Full Stack Software Engineer",
+    location: "Bogotá, Colombia (Hybrid)",
+    period: "July 2023 – February 2024",
+    logo: "/images/scotiabank-logo.png",
+    highlights: [
+      "Developed banking applications with high security standards",
+      "Implemented full-stack solutions with React and Node.js",
+      "Collaborated with cross-functional teams in Agile environment"
+    ]
   },
   {
     id: 3,
-    name: 'Work',
-    href: '#work',
+    company: "Banco de Bogotá",
+    role: "Full Stack Developer",
+    location: "Bogotá, Colombia (On-site)",
+    period: "October 2021 – July 2023",
+    logo: "/images/bancobogota-logo.png",
+    highlights: [
+      "Built financial web applications serving thousands of users",
+      "Implemented secure authentication and authorization flows",
+      "Maintained and enhanced legacy systems"
+    ]
   },
   {
     id: 4,
-    name: 'Social',
-    href: '#social',
+    company: "Accenture",
+    role: "Frontend Developer",
+    location: "Bogotá, Colombia (On-site)",
+    period: "May 2021 – September 2021",
+    logo: "/images/accenture-logo.png",
+    highlights: [
+      "Developed responsive user interfaces with modern frameworks",
+      "Collaborated with UX/UI designers to implement pixel-perfect designs"
+    ]
   },
   {
     id: 5,
-    name: 'Contact',
-    href: '#contact',
-  },
-];
-
-export const clientReviews = [
-  {
-    id: 1,
-    name: 'Carlos Mendoza',
-    position: 'Tech Lead at Mercado Libre',
-    img: 'assets/review1.png',
-    review:
-      'Working with Alejandro was exceptional. His expertise in Go and Java backend development helped us scale our e-commerce platform to handle millions of users. His attention to performance and security is outstanding.',
-  },
-  {
-    id: 2,
-    name: 'Ana Rodriguez',
-    position: 'Senior Developer at ScotiaTech',
-    img: 'assets/review2.png',
-    review:
-      'Alejandro\'s skills in Angular and Java development were crucial for our banking platform. He delivered robust, secure solutions that met all compliance requirements. A true professional with deep technical knowledge.',
-  },
-  {
-    id: 3,
-    name: 'David Torres',
-    position: 'Project Manager at Banco de Bogotá',
-    img: 'assets/review3.png',
-    review:
-      'Alejandro led the development of our banking applications with expertise in full-stack development. His knowledge of AWS, Terraform, and agile methodologies ensured successful project delivery.',
-  },
-  {
-    id: 4,
-    name: 'María González',
-    position: 'Marketing Director at Coca-Cola',
-    img: 'assets/review4.png',
-    review:
-      'Alejandro\'s work on our Forme Player campaign was outstanding. He created a seamless video streaming platform that perfectly integrated our brand and delivered an exceptional user experience for our Sony Pictures content.',
-  },
-];
-
-export const myProjects = [
-  {
-    title: 'Reddit Clone',
-    desc: 'A full-featured Reddit clone developed while following freeCodeCamp courses. Built with React, Chakra UI, and Firebase, this project demonstrates modern web development practices and user interface design.',
-    subdesc:
-      'Features include user authentication, post creation, voting system, and real-time updates. Implemented responsive design and modern UI/UX principles using Chakra UI components.',
-    href: 'https://reddit-clone-kappa-teal.vercel.app/',
-    texture: '/textures/project/project1.mp4',
-    logo: '/assets/reddit.png',
-    logoStyle: {
-      backgroundColor: '#2A1816',
-      border: '0.2px solid #36201D',
-      boxShadow: '0px 0px 60px 0px #AA3C304D',
-    },
-    spotlight: '/assets/spotlight1.png',
-    tags: [
-      {
-        id: 1,
-        name: 'React',
-        path: '/assets/react.svg',
-      },
-      {
-        id: 2,
-        name: 'Chakra UI',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'Firebase',
-        path: '/assets/typescript.png',
-      }
-    ],
-  },
-  {
-    title: 'Halo Infinite Landing Page',
-    desc: 'A responsive landing page for Halo Infinite built with HTML5, CSS, and vanilla JavaScript. Features dark/light mode detection and modern web design principles.',
-    subdesc:
-      'Developed using Vite for build optimization and deployed on GitHub Pages. The website automatically adapts to user\'s system theme preferences and provides an immersive gaming experience.',
-    href: 'https://alejandro2097.github.io/HaloInfiniteWeb/',
-    texture: '/textures/project/project2.mp4',
-    logo: '/assets/project-logo2.png',
-    logoStyle: {
-      backgroundColor: '#13202F',
-      border: '0.2px solid #17293E',
-      boxShadow: '0px 0px 60px 0px #2F6DB54D',
-    },
-    spotlight: '/assets/spotlight2.png',
-    tags: [
-      {
-        id: 1,
-        name: 'HTML5',
-        path: '/assets/react.svg',
-      },
-      {
-        id: 2,
-        name: 'CSS3',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'JavaScript',
-        path: '/assets/typescript.png',
-      },
-      {
-        id: 4,
-        name: 'Vite',
-        path: '/assets/framer.png',
-      },
-    ],
-  },
-  {
-    title: 'Maps Application with Angular',
-    desc: 'A comprehensive mapping application using MapBox API that allows users to search places worldwide and get directions similar to Google Maps. Features location-based services and interactive maps.',
-    subdesc:
-      'Built with Angular and MapBox API, includes geolocation services, place search, and routing functionality. Responsive design optimized for both desktop and mobile devices.',
-    href: 'https://maps-angular-xd.netlify.app/',
-    texture: '/textures/project/project3.mp4',
-    logo: '/assets/project-logo3.png',
-    logoStyle: {
-      backgroundColor: '#60f5a1',
-      background:
-        'linear-gradient(0deg, #60F5A150, #60F5A150), linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(208, 213, 221, 0.8) 100%)',
-      border: '0.2px solid rgba(208, 213, 221, 1)',
-      boxShadow: '0px 0px 60px 0px rgba(35, 131, 96, 0.3)',
-    },
-    spotlight: '/assets/spotlight3.png',
-    tags: [
-      {
-        id: 1,
-        name: 'Angular',
-        path: '/assets/react.svg',
-      },
-      {
-        id: 2,
-        name: 'MapBox API',
-        path: 'assets/tailwindcss.png',
-      },
-      {
-        id: 3,
-        name: 'TypeScript',
-        path: '/assets/typescript.png',
-      }
-    ],
+    company: "FCB and FiRe",
+    role: "Web Developer",
+    location: "Bogotá, Colombia (On-site)",
+    period: "August 2019 – April 2022",
+    logo: "/images/fcb-logo.png",
+    highlights: [
+      "Built and maintained websites for various clients",
+      "Implemented responsive designs and interactive features"
+    ]
   }
 ];
 
-export const calculateSizes = (isSmall, isMobile, isTablet) => {
-  return {
-    deskScale: isSmall ? 0.05 : isMobile ? 0.06 : 0.065,
-    deskPosition: isMobile ? [0.5, -4.5, 0] : [0.25, -5.5, 0],
-    cubePosition: isSmall ? [4, -5, 0] : isMobile ? [5, -5, 0] : isTablet ? [5, -5, 0] : [9, -5.5, 0],
-    reactLogoPosition: isSmall ? [3, 4, 0] : isMobile ? [5, 4, 0] : isTablet ? [5, 4, 0] : [12, 3, 0],
-    ringPosition: isSmall ? [-5, 7, 0] : isMobile ? [-10, 10, 0] : isTablet ? [-12, 10, 0] : [-24, 10, 0],
-    targetPosition: isSmall ? [-5, -10, -10] : isMobile ? [-9, -10, -10] : isTablet ? [-11, -7, -10] : [-13, -13, -10],
-  };
-};
-
-export const workExperiences = [
+// ==================== NAV & UI ====================
+const navLinks = [
   {
     id: 1,
-    name: 'Mercado Libre',
-    pos: 'Backend Developer',
-    duration: 'Dec 2023 - Present',
-    title: "Working as a Backend Developer in one of Latin America's largest e-commerce platforms. Developing scalable backend services using Go and Java, contributing to high-performance systems that serve millions of users.",
-    icon: '/assets/mercadolibre_logo.jpg',
-    animation: 'victory',
-  },
-  {
-    id: 2,
-    name: 'ScotiaTech',
-    pos: 'Software Engineer Associate',
-    duration: 'Jul 2023 - Feb 2024',
-    title: "Developed full-stack applications using Java and Angular. Collaborated with cross-functional teams to deliver robust banking solutions and financial technology applications.",
-    icon: '/assets/scotiatech_logo.jpg',
-    animation: 'clapping',
+    name: "Projects",
+    type: "finder",
   },
   {
     id: 3,
-    name: 'Banco de Bogotá',
-    pos: 'Semi-Senior Full Stack Developer',
-    duration: 'May 2022 - Jul 2023',
-    title: "Led development of banking applications using Angular, Stencil, Node.js, and TypeScript. Implemented Infrastructure as Code with Terraform for AWS, and developed REST APIs following agile methodologies.",
-    icon: '/assets/notion.svg',
-    animation: 'salute',
+    name: "Contact",
+    type: "contact",
   },
   {
     id: 4,
-    name: 'Banco de Bogotá',
-    pos: 'Junior Full Stack Developer',
-    duration: 'Oct 2021 - May 2022',
-    title: "Started as Junior Developer working with Angular 12+, TypeScript/Node.js backend development, and AWS infrastructure management using Terraform. Developed REST APIs and implemented agile methodologies.",
-    icon: '/assets/banco_de_bogota_logo.jpg',
-    animation: 'idle',
+    name: "Resume",
+    type: "resume",
+  },
+];
+
+const navIcons = [
+  {
+    id: 1,
+    img: "/icons/wifi.svg",
+  },
+  {
+    id: 2,
+    img: "/icons/search.svg",
+  },
+  {
+    id: 3,
+    img: "/icons/user.svg",
+  },
+  {
+    id: 4,
+    img: "/icons/mode.svg",
+  },
+];
+
+const dockApps = [
+  {
+    id: "finder",
+    name: "Portfolio",
+    icon: "finder.png",
+    canOpen: true,
+    showOnMobile: true,
+  },
+  {
+    id: "safari",
+    name: "Articles",
+    icon: "safari.png",
+    canOpen: true,
+    showOnMobile: true,
+  },
+  {
+    id: "photos",
+    name: "Gallery",
+    icon: "photos.png",
+    canOpen: true,
+    showOnMobile: true,
+  },
+  {
+    id: "contact",
+    name: "Contact",
+    icon: "contact.png",
+    canOpen: true,
+    showOnMobile: true,
+  },
+  {
+    id: "terminal",
+    name: "Skills",
+    icon: "terminal.png",
+    canOpen: true,
+    showOnMobile: false,
+  },
+  {
+    id: "trash",
+    name: "Archive",
+    icon: "trash.png",
+    canOpen: false,
+    showOnMobile: false,
+  },
+];
+
+const blogPosts = [
+  {
+    id: 1,
+    date: "Sep 2, 2025",
+    title:
+      "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
+    image: "/images/blog1.png",
+    link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
+  },
+  {
+    id: 2,
+    date: "Aug 28, 2025",
+    title: "The Ultimate Guide to Mastering Three.js for 3D Development",
+    image: "/images/blog2.png",
+    link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development",
+  },
+  {
+    id: 3,
+    date: "Aug 15, 2025",
+    title: "The Ultimate Guide to Mastering GSAP Animations",
+    image: "/images/blog3.png",
+    link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations",
+  },
+];
+
+// ==================== TECH STACK ====================
+const techStack = [
+  {
+    category: "Backend",
+    items: ["Go (Golang)", "Node.js", "Express", "gRPC", "REST APIs", "GraphQL"],
+  },
+  {
+    category: "Frontend",
+    items: ["React.js", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"],
+  },
+  {
+    category: "Cloud & DevOps",
+    items: ["AWS (ECS, EKS, Lambda, S3, RDS)", "Docker", "Kubernetes", "Terraform", "CI/CD"],
+  },
+  {
+    category: "Databases & Messaging",
+    items: ["PostgreSQL", "MongoDB", "Redis", "Kafka", "SQS/SNS"],
+  },
+  {
+    category: "Monitoring & Tools",
+    items: ["Prometheus", "Grafana", "OpenTelemetry", "Git", "GitHub Actions"],
+  },
+];
+
+// ==================== SOCIAL LINKS ====================
+const socials = [
+  {
+    id: 1,
+    text: "GitHub",
+    icon: "/icons/github.svg",
+    bg: "#333333",
+    link: "https://github.com/Alejandro2097",
+  },
+  {
+    id: 2,
+    text: "LinkedIn",
+    icon: "/icons/linkedin.svg",
+    bg: "#0077b5",
+    link: "https://www.linkedin.com/in/alejandro-huertas",
+  },
+  {
+    id: 3,
+    text: "Email",
+    icon: "/icons/user.svg",
+    bg: "#ea4335",
+    link: "mailto:huertas20971@gmail.com",
+  },
+  {
+    id: 4,
+    text: "Website",
+    icon: "/icons/atom.svg",
+    bg: "#4bcb63",
+    link: "https://www.alejandro-huertas.com",
+  },
+];
+
+const photosLinks = [
+  {
+    id: 1,
+    icon: "/icons/gicon1.svg",
+    title: "Library",
+  },
+  {
+    id: 2,
+    icon: "/icons/gicon2.svg",
+    title: "Memories",
+  },
+  {
+    id: 3,
+    icon: "/icons/file.svg",
+    title: "Places",
+  },
+  {
+    id: 4,
+    icon: "/icons/gicon4.svg",
+    title: "People",
   },
   {
     id: 5,
-    name: 'Accenture Colombia',
-    pos: 'Frontend Developer',
-    duration: 'May 2021 - Sept 2021',
-    title: "Developed applications using Java 8/Spring Boot and Angular 11+. Implemented Docker containers and participated in Accenture Academy to acquire DevOps skills and best practices.",
-    icon: '/assets/accenture_colombia_logo.jpg',
-    animation: 'clapping',
-  },
-  {
-    id: 6,
-    name: 'FCB&FiRe',
-    pos: 'Web Developer',
-    duration: 'Aug 2019 - Apr 2021',
-    title: "Developed and implemented custom web applications. Managed MySQL databases and contributed to various web development projects, gaining foundational experience in full-stack development.",
-    icon: '/assets/fcbfrst_logo.jpg',
-    animation: 'salute',
+    icon: "/icons/gicon5.svg",
+    title: "Favorites",
   },
 ];
+
+const gallery = [
+  {
+    id: 1,
+    img: "/images/gal1.png",
+  },
+  {
+    id: 2,
+    img: "/images/gal2.png",
+  },
+  {
+    id: 3,
+    img: "/images/gal3.png",
+  },
+  {
+    id: 4,
+    img: "/images/gal4.png",
+  },
+];
+
+export {
+  profile,
+  experience,
+  navLinks,
+  navIcons,
+  dockApps,
+  blogPosts,
+  techStack,
+  socials,
+  photosLinks,
+  gallery,
+};
+
+const WORK_LOCATION = {
+  id: 1,
+  type: "work",
+  name: "Work",
+  icon: "/icons/work.svg",
+  kind: "folder",
+  children: [
+    // ▶ Project 1: Stock App
+    {
+      id: 5,
+      name: "Stock App",
+      icon: "/images/folder.png",
+      kind: "folder",
+      position: "top-10 left-5",
+      windowPosition: "top-[5vh] left-5",
+      children: [
+        {
+          id: 1,
+          name: "Stock App Project.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-5 left-10",
+          description: [
+            "Stock App is a real-time stock market visualization and tracking application designed for investors and traders.",
+            "Instead of juggling multiple platforms, you get clean data visualization, price tracking, and portfolio insights all in one place.",
+            "Think of it like having Bloomberg Terminal vibes—but accessible, modern, and built for everyone.",
+            "It's built with React and TypeScript, consuming financial data APIs to deliver real-time market updates with a smooth, responsive interface.",
+          ],
+        },
+        {
+          id: 2,
+          name: "stock-app.com",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://stock-nr3jv10tv-alejandro2097s-projects.vercel.app",
+          position: "top-10 right-20",
+        },
+        {
+          id: 3,
+          name: "github-repo",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://github.com/Alejandro2097/Stock-app",
+          position: "top-32 right-20",
+        },
+        {
+          id: 4,
+          name: "stock-app.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "/images/project-1.png",
+        },
+      ],
+    },
+
+    // ▶ Project 2: GTA VI Clone
+    {
+      id: 6,
+      name: "Grand Theft Auto VI - Landing Clone",
+      icon: "/images/folder.png",
+      kind: "folder",
+      position: "top-52 right-80",
+      windowPosition: "top-[20vh] left-7",
+      children: [
+        {
+          id: 1,
+          name: "GTA VI Project.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-5 right-10",
+          description: [
+            "A pixel-perfect clone of the official Grand Theft Auto VI landing page, showcasing advanced frontend skills.",
+            "Instead of just static content, this project features smooth animations, responsive design, and attention to every visual detail.",
+            "Think of it like recreating a blockbuster movie poster—but interactive, animated, and fully responsive across all devices.",
+            "It's built with HTML5, CSS3, and JavaScript, focusing on performance, animations, and delivering a console-quality web experience.",
+          ],
+        },
+        {
+          id: 2,
+          name: "gtavi-clone.com",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://alejandro2097.github.io/Grand-Theft-Auto-VI/",
+          position: "top-20 left-20",
+        },
+        {
+          id: 3,
+          name: "github-repo",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://github.com/Alejandro2097/Grand-Theft-Auto-VI",
+          position: "top-40 left-20",
+        },
+        {
+          id: 4,
+          name: "gta-clone.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 left-80",
+          imageUrl: "/images/project-2.png",
+        },
+      ],
+    },
+
+    // ▶ Project 3: E-commerce
+    {
+      id: 7,
+      name: "E-commerce Web App",
+      icon: "/images/folder.png",
+      kind: "folder",
+      position: "top-10 left-80",
+      windowPosition: "top-[33vh] left-7",
+      children: [
+        {
+          id: 1,
+          name: "E-commerce Project.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-5 left-10",
+          description: [
+            "A full-featured e-commerce platform with product catalog, shopping cart, and checkout flow.",
+            "Instead of basic product listings, this delivers a complete shopping experience with filtering, search, cart management, and order processing.",
+            "Think of it like a mini-Amazon—clean architecture, smooth UX, and all the essential e-commerce features.",
+            "It's built with React and modern frontend practices, demonstrating scalable component architecture and state management patterns.",
+          ],
+        },
+        {
+          id: 2,
+          name: "ecommerce.com",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://e-commerce-8hciuksy4-alejandro2097s-projects.vercel.app/",
+          position: "top-10 right-20",
+        },
+        {
+          id: 3,
+          name: "github-repo",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://github.com/Alejandro2097/e-commerce",
+          position: "top-32 right-20",
+        },
+        {
+          id: 4,
+          name: "ecommerce.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "/images/project-3.png",
+        },
+      ],
+    },
+
+    // ▶ Project 4: Reddit Clone
+    {
+      id: 8,
+      name: "Reddit Clone",
+      icon: "/images/folder.png",
+      kind: "folder",
+      position: "top-80 left-40",
+      windowPosition: "top-[46vh] left-7",
+      children: [
+        {
+          id: 1,
+          name: "Reddit Clone Project.txt",
+          icon: "/images/txt.png",
+          kind: "file",
+          fileType: "txt",
+          position: "top-5 left-10",
+          description: [
+            "A functional Reddit clone featuring posts, voting system, comments, and community interactions.",
+            "Instead of just mimicking the UI, this project implements core Reddit mechanics—upvotes, downvotes, nested comments, and real-time updates.",
+            "Think of it like building a social network from scratch—complex state management, user interactions, and dynamic content rendering.",
+            "It's built with React and backend integration, showcasing full-stack capabilities with authentication, data persistence, and real-time features.",
+          ],
+        },
+        {
+          id: 2,
+          name: "reddit-clone.com",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://reddit-clone-kappa-teal.vercel.app/",
+          position: "top-10 right-20",
+        },
+        {
+          id: 3,
+          name: "github-repo",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://github.com/Alejandro2097/Reddit-Clone",
+          position: "top-32 right-20",
+        },
+        {
+          id: 4,
+          name: "reddit-clone.png",
+          icon: "/images/image.png",
+          kind: "file",
+          fileType: "img",
+          position: "top-52 right-80",
+          imageUrl: "/images/project-1.png", // TODO: Replace with actual Reddit Clone screenshot
+        },
+      ],
+    },
+  ],
+};
+
+const ABOUT_LOCATION = {
+  id: 2,
+  type: "about",
+  name: "About me",
+  icon: "/icons/info.svg",
+  kind: "folder",
+  children: [
+    {
+      id: 1,
+      name: "me.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-10 left-5",
+      imageUrl: "/images/alejo1.JPEG",
+    },
+    {
+      id: 2,
+      name: "casual-me.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-28 right-72",
+      imageUrl: "/images/alejo2.JPEG",
+    },
+    {
+      id: 3,
+      name: "professional-me.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-52 left-80",
+      imageUrl: "/images/alejo3.JPEG",
+    },
+    {
+      id: 4,
+      name: "about-me.txt",
+      icon: "/images/txt.png",
+      kind: "file",
+      fileType: "txt",
+      position: "top-60 left-5",
+      subtitle: "Meet the Developer Behind the Code",
+      image: "/images/alejo1.JPEG",
+      description: [
+        "Hey! I'm Alejandro, a Full Stack Developer with 5+ years of experience building scalable, high-performance applications.",
+        "I specialize in Go (Golang), React, Node.js, and AWS—delivering production-grade microservices for leading e-commerce and financial platforms like MercadoLibre, Scotiabank, and Banco de Bogotá.",
+        "I'm passionate about clean code, system architecture, event-driven design, and building software that scales. From REST/GraphQL APIs to Kafka streaming and cloud-native DevOps, I love solving complex engineering challenges.",
+        "When I'm not coding, you'll find me exploring new technologies, optimizing performance metrics, or diving deep into distributed systems architecture.",
+      ],
+    },
+  ],
+};
+
+const RESUME_LOCATION = {
+  id: 3,
+  type: "resume",
+  name: "Resume",
+  icon: "/icons/file.svg",
+  kind: "folder",
+  children: [
+    {
+      id: 1,
+      name: "Resume.pdf",
+      icon: "/images/pdf.png",
+      kind: "file",
+      fileType: "pdf",
+      // you can add `href` if you want to open a hosted resume
+      // href: "/your/resume/path.pdf",
+    },
+  ],
+};
+
+const TRASH_LOCATION = {
+  id: 4,
+  type: "trash",
+  name: "Trash",
+  icon: "/icons/trash.svg",
+  kind: "folder",
+  children: [
+    {
+      id: 1,
+      name: "trash1.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-10 left-10",
+      imageUrl: "/images/trash-1.png",
+    },
+    {
+      id: 2,
+      name: "trash2.png",
+      icon: "/images/image.png",
+      kind: "file",
+      fileType: "img",
+      position: "top-40 left-80",
+      imageUrl: "/images/trash-2.png",
+    },
+  ],
+};
+
+export const locations = {
+  work: WORK_LOCATION,
+  about: ABOUT_LOCATION,
+  resume: RESUME_LOCATION,
+  trash: TRASH_LOCATION,
+};
+
+const INITIAL_Z_INDEX = 1000;
+
+const WINDOW_CONFIG = {
+  finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+};
+
+export { INITIAL_Z_INDEX, WINDOW_CONFIG };
