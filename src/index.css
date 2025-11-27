@@ -8,7 +8,15 @@
 
 html,
 body {
-  @apply w-dvw h-dvh overflow-hidden bg-[url('/images/wallpaper.png')] bg-cover bg-no-repeat bg-center;
+  @apply w-dvw h-dvh overflow-hidden bg-cover bg-no-repeat bg-center;
+
+  /* Desktop background - Goya 1 */
+  background-image: url('/images/goya1.jpg');
+
+  /* Mobile background - Perro semihundido */
+  @media (max-width: 639px) {
+    background-image: url('/images/Perro semihundido.jpg');
+  }
 }
 
 @theme {
