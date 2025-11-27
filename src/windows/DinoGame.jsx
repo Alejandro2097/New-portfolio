@@ -21,77 +21,88 @@ const DinoGame = () => {
 
     const ctx = canvas.getContext("2d");
     const GRAVITY = 0.6;
-    const JUMP_STRENGTH = 12; // Positive because we're going UP
+    const JUMP_STRENGTH = 12;
     const GROUND_Y = 150;
     const DINO_WIDTH = 44;
     const DINO_HEIGHT = 47;
-    const OBSTACLE_WIDTH = 25;
-    const OBSTACLE_HEIGHT = 50;
+    const OBSTACLE_WIDTH = 20;
+    const OBSTACLE_HEIGHT = 45;
     const GAME_SPEED = 6;
 
     let animationId;
     const gameState = gameStateRef.current;
 
-    // Draw dino with pixel art
+    // Draw dino with clearer pixel art
     const drawDino = (x, y, isDead = false) => {
       ctx.fillStyle = "#535353";
 
+      // Body (main torso)
+      ctx.fillRect(x + 15, y + 20, 25, 20);
+
+      // Head
+      ctx.fillRect(x + 25, y + 5, 15, 15);
+
+      // Eye
       if (isDead) {
-        // Dead dino (X eyes)
-        ctx.fillRect(x + 22, y, 22, 22);
-        ctx.fillStyle = "#fff";
-        ctx.fillRect(x + 26, y + 4, 2, 2);
-        ctx.fillRect(x + 32, y + 4, 2, 2);
-        ctx.fillRect(x + 28, y + 6, 2, 2);
-        ctx.fillRect(x + 26, y + 8, 2, 2);
+        // X eyes when dead
+        ctx.fillStyle = "#535353";
+        ctx.fillRect(x + 28, y + 8, 2, 2);
         ctx.fillRect(x + 32, y + 8, 2, 2);
-        ctx.fillStyle = "#535353";
-        ctx.fillRect(x + 22, y + 13, 6, 2);
-        ctx.fillRect(x + 15, y + 22, 29, 25);
-        ctx.fillRect(x + 15, y + 47, 7, 11);
-        ctx.fillRect(x + 29, y + 47, 7, 11);
-        ctx.fillRect(x, y + 25, 15, 7);
-        ctx.fillRect(x + 18, y + 28, 4, 11);
+        ctx.fillRect(x + 28, y + 12, 2, 2);
+        ctx.fillRect(x + 32, y + 12, 2, 2);
+        ctx.fillRect(x + 30, y + 10, 2, 2);
       } else {
-        // Alive dino - head
-        ctx.fillRect(x + 22, y, 22, 22);
-        // Eye
+        // Normal eye
         ctx.fillStyle = "#fff";
-        ctx.fillRect(x + 30, y + 6, 4, 4);
+        ctx.fillRect(x + 32, y + 8, 3, 3);
         ctx.fillStyle = "#535353";
-        // Mouth
-        ctx.fillRect(x + 22, y + 13, 6, 2);
-        // Body
-        ctx.fillRect(x + 15, y + 22, 29, 25);
-        // Legs (alternating for running animation)
-        const legOffset = gameState.animationFrame % 12 < 6 ? 0 : 2;
-        ctx.fillRect(x + 15, y + 47, 7, 11 - legOffset);
-        ctx.fillRect(x + 29, y + 47 + legOffset, 7, 11 - legOffset);
-        // Tail
-        ctx.fillRect(x, y + 25, 15, 7);
-        ctx.fillRect(x + 2, y + 18, 7, 7);
-        // Arms
-        ctx.fillRect(x + 18, y + 28, 4, 11);
+        ctx.fillRect(x + 33, y + 9, 1, 1);
       }
+
+      ctx.fillStyle = "#535353";
+
+      // Mouth
+      ctx.fillRect(x + 38, y + 12, 2, 2);
+
+      // Tail
+      ctx.fillRect(x + 6, y + 22, 9, 6);
+      ctx.fillRect(x + 3, y + 18, 6, 6);
+
+      // Legs animation
+      const legUp = Math.floor(gameState.animationFrame / 8) % 2;
+
+      // Front leg
+      if (legUp === 0) {
+        ctx.fillRect(x + 28, y + 40, 5, 7);
+      } else {
+        ctx.fillRect(x + 28, y + 42, 5, 5);
+      }
+
+      // Back leg
+      if (legUp === 1) {
+        ctx.fillRect(x + 18, y + 40, 5, 7);
+      } else {
+        ctx.fillRect(x + 18, y + 42, 5, 5);
+      }
+
+      // Arm
+      ctx.fillRect(x + 25, y + 25, 3, 8);
     };
 
-    // Draw cactus
+    // Draw cactus with clearer shape
     const drawCactus = (x, y) => {
       ctx.fillStyle = "#535353";
 
-      const bodyWidth = 12;
-      const bodyX = x + 6;
-
-      // Main body
-      ctx.fillRect(bodyX, y, bodyWidth, 40);
+      // Main vertical trunk
+      ctx.fillRect(x + 6, y + 5, 8, 40);
 
       // Left arm
-      ctx.fillRect(bodyX - 6, y + 10, 6, 3);
-      ctx.fillRect(bodyX - 6, y + 10, 3, 15);
+      ctx.fillRect(x + 2, y + 15, 4, 3);
+      ctx.fillRect(x + 2, y + 15, 3, 12);
 
       // Right arm
-      ctx.fillRect(bodyX + bodyWidth, y + 15, 6, 3);
-      ctx.fillRect(bodyX + bodyWidth + 3, y + 15, 3, 12);
+      ctx.fillRect(x + 14, y + 20, 4, 3);
+      ctx.fillRect(x + 15, y + 20, 3, 10);
     };
 
     // Reset game
@@ -154,7 +165,7 @@ const DinoGame = () => {
         gameState.animationFrame++;
 
         // Update dino physics - y is height above ground
-        gameState.dino.velocityY -= GRAVITY; // Gravity pulls down (reduces upward velocity)
+        gameState.dino.velocityY -= GRAVITY;
         gameState.dino.y += gameState.dino.velocityY;
 
         // Ground collision
@@ -178,22 +189,22 @@ const DinoGame = () => {
           return obstacle.x > -OBSTACLE_WIDTH;
         });
 
-        // Check collisions
+        // Check collisions with tighter hitbox
         const dinoY = GROUND_Y - DINO_HEIGHT - gameState.dino.y;
         const dinoBottom = dinoY + DINO_HEIGHT;
-        const dinoLeft = gameState.dino.x + 5;
-        const dinoRight = gameState.dino.x + DINO_WIDTH - 5;
+        const dinoLeft = gameState.dino.x + 18;
+        const dinoRight = gameState.dino.x + 38;
 
         for (let obstacle of gameState.obstacles) {
           const obstacleY = GROUND_Y - OBSTACLE_HEIGHT;
           const obstacleBottom = GROUND_Y;
-          const obstacleLeft = obstacle.x + 5;
-          const obstacleRight = obstacle.x + OBSTACLE_WIDTH - 5;
+          const obstacleLeft = obstacle.x + 6;
+          const obstacleRight = obstacle.x + 14;
 
           if (
             dinoLeft < obstacleRight &&
             dinoRight > obstacleLeft &&
-            dinoBottom > obstacleY &&
+            dinoBottom > obstacleY + 5 &&
             dinoY < obstacleBottom
           ) {
             gameState.gameOver = true;
