@@ -59,7 +59,7 @@ const DinoGame = () => {
         ctx.fillText("✖", x + 5, y + 15);
         ctx.fillText("✖", x + 20, y + 15);
       } else {
-        ctx.fillText("🦕", x, y + DINO_HEIGHT);
+        ctx.fillText("🦖", x, y + DINO_HEIGHT);
       }
     };
 
@@ -255,7 +255,7 @@ const DinoGame = () => {
       <div ref={containerRef} className="mobile-dino-container">
         <div className="instructions">
           <p className="text-center text-sm text-gray-600 dark:text-gray-400 mb-3">
-            Tap anywhere to jump! 🦕
+            Tap anywhere to jump! 🦖
           </p>
         </div>
         <canvas

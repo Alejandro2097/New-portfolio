@@ -45,7 +45,7 @@ const DinoGame = () => {
         ctx.fillText("✖", x + 5, y + 15);
         ctx.fillText("✖", x + 20, y + 15);
       } else {
-        ctx.fillText("🦕", x, y + DINO_HEIGHT);
+        ctx.fillText("🦖", x, y + DINO_HEIGHT);
       }
     };
 
