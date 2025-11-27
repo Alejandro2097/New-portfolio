@@ -201,7 +201,7 @@ const DinoGame = () => {
       ctx.font = "bold 16px monospace";
       ctx.textAlign = "right";
       ctx.textBaseline = "top";
-      ctx.fillText(`HI: ${highScore.toString().padStart(5, "0")}  ${score.toString().padStart(5, "0")}`, canvas.width - 20, 20);
+      ctx.fillText(`HI: ${highScore.toString().padStart(5, "0")}  ${gameState.score.toString().padStart(5, "0")}`, canvas.width - 20, 20);
 
       // Draw game over message
       if (gameState.gameOver) {
