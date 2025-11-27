@@ -187,9 +187,11 @@ const DinoGame = () => {
           }
         }
 
-        // Update score
-        gameState.score++;
-        setScore(gameState.score);
+        // Update score every 10 frames (makes it more visible)
+        if (gameState.frameCount % 10 === 0) {
+          gameState.score++;
+          setScore(gameState.score);
+        }
       }
 
       // Draw ground line
