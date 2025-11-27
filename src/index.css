@@ -488,19 +488,25 @@ body {
     }
 
     .content {
-      @apply flex-1 p-8 bg-white dark:bg-dark-700 max-w-2xl relative text-black dark:text-white;
-      @apply grid grid-cols-4 gap-6 auto-rows-min;
+      @apply flex-1 p-10 bg-white dark:bg-dark-700 max-w-4xl relative text-black dark:text-white;
+      @apply grid gap-8 auto-rows-min;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+
+      @media (max-width: 640px) {
+        @apply p-6 gap-6;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
 
       li {
-        @apply flex items-center flex-col gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-500 p-4 rounded-lg transition-all;
-        @apply relative;
+        @apply flex items-center flex-col gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-500 p-5 rounded-xl transition-all;
+        @apply justify-start min-h-[140px];
 
         img {
-          @apply object-contain object-center size-24 relative transition-transform hover:scale-110;
+          @apply object-contain object-center size-20 relative transition-transform hover:scale-105;
         }
 
         p {
-          @apply text-sm text-center font-medium w-full break-words;
+          @apply text-xs text-center font-medium w-full break-words line-clamp-2;
         }
       }
     }
@@ -514,27 +520,36 @@ body {
     }
 
     .finder-gallery {
-      @apply px-5 py-5;
+      @apply px-6 py-6;
 
       ul {
-        @apply grid grid-cols-3 gap-6;
+        @apply grid gap-6;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+
+        @media (min-width: 375px) {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+
+        @media (min-width: 480px) {
+          grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        }
 
         li {
-          @apply cursor-pointer transition-transform hover:scale-105 active:scale-95;
+          @apply cursor-pointer transition-transform active:scale-95;
 
           .finder-item {
-            @apply flex flex-col items-center gap-3;
+            @apply flex flex-col items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-500 transition-all;
 
             .folder-icon {
-              @apply flex items-center justify-center w-24 h-24 rounded-xl bg-blue-50 dark:bg-blue-900/20;
+              @apply flex items-center justify-center w-20 h-20 rounded-xl bg-blue-50 dark:bg-blue-900/20;
             }
 
             .file-icon {
-              @apply w-24 h-24 object-contain rounded-lg;
+              @apply w-20 h-20 object-contain rounded-lg;
             }
 
             .item-name {
-              @apply text-sm text-center text-black dark:text-white font-medium line-clamp-2 w-full px-1;
+              @apply text-xs text-center text-black dark:text-white font-medium line-clamp-2 w-full px-1;
             }
           }
         }
