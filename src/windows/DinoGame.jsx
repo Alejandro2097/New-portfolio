@@ -32,21 +32,29 @@ const DinoGame = () => {
     let animationId;
     const gameState = gameStateRef.current;
 
-    // Draw dino using text emoji
+    // Draw dino using text emoji (flipped to face right)
     const drawDino = (x, y, isDead = false) => {
+      ctx.save();
       ctx.font = "40px Arial";
       ctx.textBaseline = "bottom";
 
+      // Flip horizontally to make dino face right
+      ctx.translate(x + DINO_WIDTH, y);
+      ctx.scale(-1, 1);
+
       if (isDead) {
-        ctx.fillText("🦖", x, y + DINO_HEIGHT);
+        ctx.fillText("🦖", 0, DINO_HEIGHT);
         // Draw X eyes
         ctx.font = "12px Arial";
         ctx.fillStyle = "#ff0000";
-        ctx.fillText("✖", x + 5, y + 15);
-        ctx.fillText("✖", x + 20, y + 15);
+        ctx.scale(-1, 1); // Flip back for eyes
+        ctx.fillText("✖", -30, 15);
+        ctx.fillText("✖", -15, 15);
       } else {
-        ctx.fillText("🦖", x, y + DINO_HEIGHT);
+        ctx.fillText("🦖", 0, DINO_HEIGHT);
       }
+
+      ctx.restore();
     };
 
     // Draw cactus using text emoji
