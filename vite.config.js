@@ -7,7 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/New-portfolio/',
+  base: '/', // Using custom domain alejandro-huertas.com
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
