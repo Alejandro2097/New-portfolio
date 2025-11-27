@@ -294,6 +294,14 @@ const gallery = [
     id: 3,
     img: "/images/alejo3.JPEG",
   },
+  {
+    id: 4,
+    img: "/images/alejo5.jpg",
+  },
+  {
+    id: 5,
+    img: "/images/alejo6.JPEG",
+  },
 ];
 
 export {

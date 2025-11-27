@@ -1,4 +1,4 @@
-import { socials } from "#constants";
+import { socials, profile } from "#constants";
 import MobileWindowWrapper from "#hoc/MobileWindowWrapper";
 import MobileWindowHeader from "#components/mobile/WindowHeader";
 
@@ -9,8 +9,8 @@ const MobileContactContent = () => {
 
       <div className="content">
         <img
-          src="/images/adrian.jpg"
-          alt="Adrian"
+          src={profile.profileImage}
+          alt={profile.shortName}
           className="w-20 rounded-full"
         />
 

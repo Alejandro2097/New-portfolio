@@ -1,5 +1,5 @@
 import MobileWindowHeader from "#components/mobile/WindowHeader";
-import { techStack } from "#constants";
+import { techStack, profile } from "#constants";
 import MobileWindowWrapper from "#hoc/MobileWindowWrapper";
 import { Check, ChevronRight, Flag } from "lucide-react";
 
@@ -10,7 +10,7 @@ const MobileTerminalContent = () => {
 
       <div className="techstack">
         <p>
-          <span className="font-bold">@adrian %</span> show tech stack
+          <span className="font-bold">@{profile.githubUsername} %</span> show tech stack
         </p>
 
         <ul className="content">

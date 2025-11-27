@@ -397,7 +397,7 @@ body {
 
         li {
           img {
-            @apply size-full object-cover rounded-lg;
+            @apply size-full object-contain rounded-lg bg-gray-100 dark:bg-dark-500;
           }
 
           &:first-child {
@@ -431,7 +431,7 @@ body {
 
         li {
           img {
-            @apply w-full h-52 object-cover rounded-lg;
+            @apply w-full h-52 object-contain rounded-lg bg-gray-100 dark:bg-dark-500;
           }
         }
       }
