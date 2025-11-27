@@ -7,6 +7,13 @@ import Theme from "./Theme";
 const Navbar = () => {
   const { openWindow } = useWindowStore();
 
+  const handleIconClick = (iconId) => {
+    if (iconId === 1) {
+      // Wifi icon - open dino game
+      openWindow("dinogame");
+    }
+  };
+
   return (
     <nav>
       <div>
@@ -31,7 +38,8 @@ const Navbar = () => {
               ) : (
                 <img
                   src={icon.img}
-                  className="icon dark:invert dark:hover:bg-dark-500!"
+                  className="icon dark:invert dark:hover:bg-dark-500! cursor-pointer"
+                  onClick={() => handleIconClick(icon.id)}
                 />
               )}
             </li>

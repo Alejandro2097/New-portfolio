@@ -113,7 +113,7 @@ body {
   }
 
   #safari {
-    @apply w-4xl sm:absolute top-40 left-2/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden select-none max-sm:hidden;
+    @apply w-[900px] sm:absolute top-40 left-2/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden select-none max-sm:hidden;
 
     .search {
       @apply flex items-center gap-3 w-2/3 bg-white dark:bg-dark-500 border border-gray-300 dark:border-dark-300 rounded-lg px-3 py-2;
@@ -209,7 +209,7 @@ body {
   }
 
   #terminal {
-    @apply w-xl absolute top-32 left-1/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-[650px] absolute top-32 left-1/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -299,7 +299,7 @@ body {
   }
 
   #contact {
-    @apply max-w-2xl absolute top-60 left-5/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden text-black dark:text-white;
+    @apply w-[750px] absolute top-60 left-5/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden text-black dark:text-white;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -359,7 +359,7 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-[900px] absolute top-96 left-1/2 -translate-y-1/2 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .sidebar {
       @apply w-3/12 flex-none bg-gray-50 dark:bg-dark-300 border-r border-gray-200 dark:border-dark-500 flex flex-col p-5 text-black dark:text-white;
@@ -461,7 +461,7 @@ body {
   }
 
   #finder {
-    @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
+    @apply absolute w-[850px] left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
 
     .sidebar {
       @apply w-48 bg-gray-50 dark:bg-dark-300 border-r border-gray-200 dark:border-dark-500 flex flex-col p-5 space-y-3;
@@ -579,7 +579,7 @@ body {
   }
 
   #txtfile {
-    @apply w-md absolute top-36 right-32 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden text-black dark:text-white;
+    @apply w-[550px] absolute top-36 right-32 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden text-black dark:text-white;
 
     h2 {
       @apply font-bold text-sm text-center w-full;
@@ -591,7 +591,7 @@ body {
   }
 
   #imgfile {
-    @apply w-xl absolute top-40 left-2/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-[700px] absolute top-40 left-2/12 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       p {
@@ -657,6 +657,38 @@ body {
           }
         }
       }
+    }
+  }
+
+  #dinogame {
+    @apply w-[620px] absolute top-32 left-1/4 bg-white dark:bg-dark-700 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+
+    h2 {
+      @apply font-bold text-sm text-center w-full;
+    }
+
+    .dino-game-container {
+      @apply p-5 flex items-center justify-center bg-gray-50 dark:bg-dark-300;
+    }
+
+    .dino-canvas {
+      @apply bg-white dark:bg-dark-500 rounded-lg;
+    }
+  }
+
+  #mobile-dinogame {
+    @apply w-screen h-screen bg-white dark:bg-dark-700 select-none absolute top-0 z-60 sm:hidden overflow-hidden;
+
+    .mobile-dino-container {
+      @apply flex flex-col items-center justify-start p-5 pt-10 h-full;
+    }
+
+    .instructions {
+      @apply mb-5;
+    }
+
+    .dino-canvas {
+      @apply bg-gray-50 dark:bg-dark-500 rounded-lg w-full shadow-lg;
     }
   }
 }
