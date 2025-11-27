@@ -5,6 +5,7 @@ import WindowControls from "#components/WindowControls";
 const DinoGame = () => {
   const canvasRef = useRef(null);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const gameStateRef = useRef({
     dino: { x: 50, y: 0, velocityY: 0, jumping: false },
@@ -12,7 +13,6 @@ const DinoGame = () => {
     score: 0,
     gameOver: false,
     frameCount: 0,
-    animationFrame: 0,
   });
 
   useEffect(() => {
@@ -23,86 +23,37 @@ const DinoGame = () => {
     const GRAVITY = 0.6;
     const JUMP_STRENGTH = 12;
     const GROUND_Y = 150;
-    const DINO_WIDTH = 44;
-    const DINO_HEIGHT = 47;
+    const DINO_WIDTH = 35;
+    const DINO_HEIGHT = 40;
     const OBSTACLE_WIDTH = 20;
-    const OBSTACLE_HEIGHT = 45;
+    const OBSTACLE_HEIGHT = 35;
     const GAME_SPEED = 6;
 
     let animationId;
     const gameState = gameStateRef.current;
 
-    // Draw dino with clearer pixel art
+    // Draw dino using text emoji
     const drawDino = (x, y, isDead = false) => {
-      ctx.fillStyle = "#535353";
+      ctx.font = "40px Arial";
+      ctx.textBaseline = "bottom";
 
-      // Body (main torso)
-      ctx.fillRect(x + 15, y + 20, 25, 20);
-
-      // Head
-      ctx.fillRect(x + 25, y + 5, 15, 15);
-
-      // Eye
       if (isDead) {
-        // X eyes when dead
-        ctx.fillStyle = "#535353";
-        ctx.fillRect(x + 28, y + 8, 2, 2);
-        ctx.fillRect(x + 32, y + 8, 2, 2);
-        ctx.fillRect(x + 28, y + 12, 2, 2);
-        ctx.fillRect(x + 32, y + 12, 2, 2);
-        ctx.fillRect(x + 30, y + 10, 2, 2);
+        ctx.fillText("🦖", x, y + DINO_HEIGHT);
+        // Draw X eyes
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "#ff0000";
+        ctx.fillText("✖", x + 5, y + 15);
+        ctx.fillText("✖", x + 20, y + 15);
       } else {
-        // Normal eye
-        ctx.fillStyle = "#fff";
-        ctx.fillRect(x + 32, y + 8, 3, 3);
-        ctx.fillStyle = "#535353";
-        ctx.fillRect(x + 33, y + 9, 1, 1);
+        ctx.fillText("🦕", x, y + DINO_HEIGHT);
       }
-
-      ctx.fillStyle = "#535353";
-
-      // Mouth
-      ctx.fillRect(x + 38, y + 12, 2, 2);
-
-      // Tail
-      ctx.fillRect(x + 6, y + 22, 9, 6);
-      ctx.fillRect(x + 3, y + 18, 6, 6);
-
-      // Legs animation
-      const legUp = Math.floor(gameState.animationFrame / 8) % 2;
-
-      // Front leg
-      if (legUp === 0) {
-        ctx.fillRect(x + 28, y + 40, 5, 7);
-      } else {
-        ctx.fillRect(x + 28, y + 42, 5, 5);
-      }
-
-      // Back leg
-      if (legUp === 1) {
-        ctx.fillRect(x + 18, y + 40, 5, 7);
-      } else {
-        ctx.fillRect(x + 18, y + 42, 5, 5);
-      }
-
-      // Arm
-      ctx.fillRect(x + 25, y + 25, 3, 8);
     };
 
-    // Draw cactus with clearer shape
+    // Draw cactus using text emoji
     const drawCactus = (x, y) => {
-      ctx.fillStyle = "#535353";
-
-      // Main vertical trunk
-      ctx.fillRect(x + 6, y + 5, 8, 40);
-
-      // Left arm
-      ctx.fillRect(x + 2, y + 15, 4, 3);
-      ctx.fillRect(x + 2, y + 15, 3, 12);
-
-      // Right arm
-      ctx.fillRect(x + 14, y + 20, 4, 3);
-      ctx.fillRect(x + 15, y + 20, 3, 10);
+      ctx.font = "35px Arial";
+      ctx.textBaseline = "bottom";
+      ctx.fillText("🌵", x, y + OBSTACLE_HEIGHT);
     };
 
     // Reset game
@@ -112,7 +63,6 @@ const DinoGame = () => {
       gameState.score = 0;
       gameState.gameOver = false;
       gameState.frameCount = 0;
-      gameState.animationFrame = 0;
       setScore(0);
       setGameOver(false);
     };
@@ -161,10 +111,7 @@ const DinoGame = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       if (!gameState.gameOver) {
-        // Update animation frame
-        gameState.animationFrame++;
-
-        // Update dino physics - y is height above ground
+        // Update dino physics
         gameState.dino.velocityY -= GRAVITY;
         gameState.dino.y += gameState.dino.velocityY;
 
@@ -177,7 +124,7 @@ const DinoGame = () => {
 
         // Spawn obstacles
         gameState.frameCount++;
-        if (gameState.frameCount % 90 === 0) {
+        if (gameState.frameCount % 100 === 0) {
           gameState.obstacles.push({
             x: canvas.width,
           });
@@ -189,35 +136,36 @@ const DinoGame = () => {
           return obstacle.x > -OBSTACLE_WIDTH;
         });
 
-        // Check collisions with tighter hitbox
+        // Check collisions
         const dinoY = GROUND_Y - DINO_HEIGHT - gameState.dino.y;
         const dinoBottom = dinoY + DINO_HEIGHT;
-        const dinoLeft = gameState.dino.x + 18;
-        const dinoRight = gameState.dino.x + 38;
+        const dinoLeft = gameState.dino.x;
+        const dinoRight = gameState.dino.x + DINO_WIDTH;
 
         for (let obstacle of gameState.obstacles) {
           const obstacleY = GROUND_Y - OBSTACLE_HEIGHT;
           const obstacleBottom = GROUND_Y;
-          const obstacleLeft = obstacle.x + 6;
-          const obstacleRight = obstacle.x + 14;
+          const obstacleLeft = obstacle.x;
+          const obstacleRight = obstacle.x + OBSTACLE_WIDTH;
 
           if (
-            dinoLeft < obstacleRight &&
-            dinoRight > obstacleLeft &&
+            dinoLeft < obstacleRight - 5 &&
+            dinoRight > obstacleLeft + 5 &&
             dinoBottom > obstacleY + 5 &&
             dinoY < obstacleBottom
           ) {
             gameState.gameOver = true;
             setGameOver(true);
+            if (gameState.score > highScore) {
+              setHighScore(gameState.score);
+            }
             break;
           }
         }
 
         // Update score
         gameState.score++;
-        if (gameState.frameCount % 10 === 0) {
-          setScore(Math.floor(gameState.score / 10));
-        }
+        setScore(gameState.score);
       }
 
       // Draw ground line
@@ -240,18 +188,26 @@ const DinoGame = () => {
 
       // Draw score
       ctx.fillStyle = "#535353";
-      ctx.font = "20px monospace";
+      ctx.font = "bold 16px monospace";
       ctx.textAlign = "right";
-      ctx.fillText(`HI ${score.toString().padStart(5, "0")}`, canvas.width - 20, 30);
+      ctx.textBaseline = "top";
+      ctx.fillText(`HI: ${highScore.toString().padStart(5, "0")}  ${score.toString().padStart(5, "0")}`, canvas.width - 20, 20);
 
       // Draw game over message
       if (gameState.gameOver) {
-        ctx.fillStyle = "#535353";
-        ctx.font = "24px monospace";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 30px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("G A M E  O V E R", canvas.width / 2, 60);
-        ctx.font = "16px monospace";
-        ctx.fillText("Press SPACE or TAP to restart", canvas.width / 2, 90);
+        ctx.textBaseline = "middle";
+        ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 20);
+
+        ctx.font = "16px Arial";
+        ctx.fillText("Press SPACE or TAP to restart", canvas.width / 2, canvas.height / 2 + 20);
+
+        ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 50);
       }
 
       animationId = requestAnimationFrame(gameLoop);
@@ -266,7 +222,7 @@ const DinoGame = () => {
       canvas.removeEventListener("touchstart", handleTouchStart);
       canvas.removeEventListener("click", handleTouchStart);
     };
-  }, []);
+  }, [highScore]);
 
   return (
     <>
