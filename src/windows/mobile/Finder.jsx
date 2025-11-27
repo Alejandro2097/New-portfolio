@@ -94,7 +94,7 @@ const MobileFinderContent = () => {
                   <img
                     src="/images/folder.png"
                     alt="folder"
-                    className="size-16"
+                    className="folder-icon"
                   />
                 ) : (
                   <img src={item.icon} alt={item.name} className="file-icon" />

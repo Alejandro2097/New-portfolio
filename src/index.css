@@ -516,40 +516,61 @@ body {
     @apply w-screen h-screen bg-white dark:bg-dark-700 select-none absolute top-0 z-60 pt-16 sm:hidden overflow-y-auto overflow-x-hidden;
 
     .breadcrumb {
-      @apply flex items-center px-5 py-3 bg-gray-50 dark:bg-dark-300 border-b border-gray-200 dark:border-dark-500;
+      @apply flex items-center px-4 py-2.5 bg-gray-50 dark:bg-dark-300 border-b border-gray-200 dark:border-dark-500;
     }
 
     .finder-gallery {
-      @apply px-4 py-4;
+      @apply px-3 py-3 h-full;
 
       ul {
-        @apply grid gap-4;
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        @apply grid gap-3;
+        grid-template-columns: repeat(4, 1fr);
 
         @media (min-width: 375px) {
-          grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+          @apply gap-3;
+          grid-template-columns: repeat(4, 1fr);
         }
 
         @media (min-width: 480px) {
-          grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+          @apply gap-4;
+          grid-template-columns: repeat(5, 1fr);
+        }
+
+        @media (min-width: 640px) {
+          @apply gap-4;
+          grid-template-columns: repeat(6, 1fr);
+        }
+
+        @media (min-width: 768px) {
+          @apply gap-5 px-4;
+          grid-template-columns: repeat(7, 1fr);
+        }
+
+        @media (min-width: 1024px) {
+          @apply gap-6 px-6;
+          grid-template-columns: repeat(8, 1fr);
         }
 
         li {
           @apply cursor-pointer transition-transform active:scale-95;
 
           .finder-item {
-            @apply flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-500 transition-all;
+            @apply flex flex-col items-center gap-2 p-2 rounded-lg active:bg-gray-100 dark:active:bg-dark-500 transition-all;
 
             .folder-icon {
-              @apply flex items-center justify-center w-16 h-16 rounded-lg bg-blue-50 dark:bg-blue-900/20;
+              @apply flex items-center justify-center w-14 h-14 rounded-lg bg-blue-50 dark:bg-blue-900/20;
             }
 
             .file-icon {
-              @apply w-16 h-16 object-contain rounded-lg;
+              @apply w-14 h-14 object-contain rounded-lg;
             }
 
             .item-name {
-              @apply text-xs text-center text-black dark:text-white font-medium line-clamp-2 w-full;
+              @apply text-[10px] leading-tight text-center text-black dark:text-white font-medium line-clamp-2 w-full;
+
+              @media (min-width: 375px) {
+                @apply text-xs;
+              }
             }
           }
         }
