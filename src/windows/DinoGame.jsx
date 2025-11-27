@@ -21,8 +21,8 @@ const DinoGame = () => {
 
     const ctx = canvas.getContext("2d");
     const GRAVITY = 0.6;
-    const JUMP_STRENGTH = -12;
-    const GROUND_HEIGHT = 150;
+    const JUMP_STRENGTH = 12; // Positive because we're going UP
+    const GROUND_Y = 150;
     const DINO_WIDTH = 44;
     const DINO_HEIGHT = 47;
     const OBSTACLE_WIDTH = 25;
@@ -32,15 +32,13 @@ const DinoGame = () => {
     let animationId;
     const gameState = gameStateRef.current;
 
-    // Draw dino with simple pixel art
+    // Draw dino with pixel art
     const drawDino = (x, y, isDead = false) => {
       ctx.fillStyle = "#535353";
 
       if (isDead) {
         // Dead dino (X eyes)
-        // Head
         ctx.fillRect(x + 22, y, 22, 22);
-        // Eye X's
         ctx.fillStyle = "#fff";
         ctx.fillRect(x + 26, y + 4, 2, 2);
         ctx.fillRect(x + 32, y + 4, 2, 2);
@@ -48,20 +46,14 @@ const DinoGame = () => {
         ctx.fillRect(x + 26, y + 8, 2, 2);
         ctx.fillRect(x + 32, y + 8, 2, 2);
         ctx.fillStyle = "#535353";
-        // Mouth
         ctx.fillRect(x + 22, y + 13, 6, 2);
-        // Body
         ctx.fillRect(x + 15, y + 22, 29, 25);
-        // Legs
         ctx.fillRect(x + 15, y + 47, 7, 11);
         ctx.fillRect(x + 29, y + 47, 7, 11);
-        // Tail
         ctx.fillRect(x, y + 25, 15, 7);
-        // Arms
         ctx.fillRect(x + 18, y + 28, 4, 11);
       } else {
-        // Alive dino
-        // Head
+        // Alive dino - head
         ctx.fillRect(x + 22, y, 22, 22);
         // Eye
         ctx.fillStyle = "#fff";
@@ -74,7 +66,7 @@ const DinoGame = () => {
         // Legs (alternating for running animation)
         const legOffset = gameState.animationFrame % 12 < 6 ? 0 : 2;
         ctx.fillRect(x + 15, y + 47, 7, 11 - legOffset);
-        ctx.fillRect(x + 29, y + 47, 7, 11 + legOffset);
+        ctx.fillRect(x + 29, y + 47 + legOffset, 7, 11 - legOffset);
         // Tail
         ctx.fillRect(x, y + 25, 15, 7);
         ctx.fillRect(x + 2, y + 18, 7, 7);
@@ -83,27 +75,23 @@ const DinoGame = () => {
       }
     };
 
-    // Draw cactus with more detail
-    const drawCactus = (x, y, width, height) => {
+    // Draw cactus
+    const drawCactus = (x, y) => {
       ctx.fillStyle = "#535353";
 
-      // Main body
       const bodyWidth = 12;
-      const bodyX = x + (width - bodyWidth) / 2;
-      ctx.fillRect(bodyX, y + height - 40, bodyWidth, 40);
+      const bodyX = x + 6;
+
+      // Main body
+      ctx.fillRect(bodyX, y, bodyWidth, 40);
 
       // Left arm
-      ctx.fillRect(bodyX - 7, y + height - 30, 7, 15);
-      ctx.fillRect(bodyX - 7, y + height - 30, 4, 20);
+      ctx.fillRect(bodyX - 6, y + 10, 6, 3);
+      ctx.fillRect(bodyX - 6, y + 10, 3, 15);
 
       // Right arm
-      ctx.fillRect(bodyX + bodyWidth, y + height - 25, 7, 15);
-      ctx.fillRect(bodyX + bodyWidth + 3, y + height - 25, 4, 20);
-
-      // Add some spikes (small details)
-      ctx.fillRect(bodyX - 2, y + height - 35, 2, 2);
-      ctx.fillRect(bodyX + bodyWidth, y + height - 30, 2, 2);
-      ctx.fillRect(bodyX + 5, y + height - 38, 2, 2);
+      ctx.fillRect(bodyX + bodyWidth, y + 15, 6, 3);
+      ctx.fillRect(bodyX + bodyWidth + 3, y + 15, 3, 12);
     };
 
     // Reset game
@@ -138,7 +126,7 @@ const DinoGame = () => {
       }
     };
 
-    // Handle touch/click events for mobile
+    // Handle touch/click events
     const handleTouchStart = (e) => {
       e.preventDefault();
       if (gameState.gameOver) {
@@ -165,12 +153,12 @@ const DinoGame = () => {
         // Update animation frame
         gameState.animationFrame++;
 
-        // Update dino physics
-        gameState.dino.velocityY += GRAVITY;
+        // Update dino physics - y is height above ground
+        gameState.dino.velocityY -= GRAVITY; // Gravity pulls down (reduces upward velocity)
         gameState.dino.y += gameState.dino.velocityY;
 
         // Ground collision
-        if (gameState.dino.y >= 0) {
+        if (gameState.dino.y <= 0) {
           gameState.dino.y = 0;
           gameState.dino.velocityY = 0;
           gameState.dino.jumping = false;
@@ -181,9 +169,6 @@ const DinoGame = () => {
         if (gameState.frameCount % 90 === 0) {
           gameState.obstacles.push({
             x: canvas.width,
-            y: 0,
-            width: OBSTACLE_WIDTH,
-            height: OBSTACLE_HEIGHT,
           });
         }
 
@@ -193,23 +178,23 @@ const DinoGame = () => {
           return obstacle.x > -OBSTACLE_WIDTH;
         });
 
-        // Check collisions (more precise hitbox)
-        const dinoBottom = GROUND_HEIGHT - gameState.dino.y;
-        const dinoTop = dinoBottom - DINO_HEIGHT;
-        const dinoLeft = gameState.dino.x + 5; // Add padding for more fair collision
+        // Check collisions
+        const dinoY = GROUND_Y - DINO_HEIGHT - gameState.dino.y;
+        const dinoBottom = dinoY + DINO_HEIGHT;
+        const dinoLeft = gameState.dino.x + 5;
         const dinoRight = gameState.dino.x + DINO_WIDTH - 5;
 
         for (let obstacle of gameState.obstacles) {
-          const obstacleTop = GROUND_HEIGHT - OBSTACLE_HEIGHT;
-          const obstacleBottom = GROUND_HEIGHT;
+          const obstacleY = GROUND_Y - OBSTACLE_HEIGHT;
+          const obstacleBottom = GROUND_Y;
           const obstacleLeft = obstacle.x + 5;
-          const obstacleRight = obstacle.x + obstacle.width - 5;
+          const obstacleRight = obstacle.x + OBSTACLE_WIDTH - 5;
 
           if (
             dinoLeft < obstacleRight &&
             dinoRight > obstacleLeft &&
-            dinoBottom > obstacleTop &&
-            dinoTop < obstacleBottom
+            dinoBottom > obstacleY &&
+            dinoY < obstacleBottom
           ) {
             gameState.gameOver = true;
             setGameOver(true);
@@ -228,18 +213,18 @@ const DinoGame = () => {
       ctx.strokeStyle = "#535353";
       ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.moveTo(0, GROUND_HEIGHT);
-      ctx.lineTo(canvas.width, GROUND_HEIGHT);
+      ctx.moveTo(0, GROUND_Y);
+      ctx.lineTo(canvas.width, GROUND_Y);
       ctx.stroke();
 
       // Draw dino
-      const dinoY = GROUND_HEIGHT - DINO_HEIGHT - gameState.dino.y;
+      const dinoY = GROUND_Y - DINO_HEIGHT - gameState.dino.y;
       drawDino(gameState.dino.x, dinoY, gameState.gameOver);
 
       // Draw obstacles (cacti)
       gameState.obstacles.forEach((obstacle) => {
-        const obstacleY = GROUND_HEIGHT - obstacle.height;
-        drawCactus(obstacle.x, obstacleY, obstacle.width, obstacle.height);
+        const obstacleY = GROUND_Y - OBSTACLE_HEIGHT;
+        drawCactus(obstacle.x, obstacleY);
       });
 
       // Draw score
