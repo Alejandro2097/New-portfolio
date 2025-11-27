@@ -226,7 +226,6 @@ const DinoGame = () => {
       }
 
       // Draw ground line
-      const GROUND_Y = canvas.height - 50;
       ctx.strokeStyle = "#535353";
       ctx.lineWidth = 2;
       ctx.beginPath();
