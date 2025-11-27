@@ -488,21 +488,21 @@ body {
     }
 
     .content {
-      @apply flex-1 p-10 bg-white dark:bg-dark-700 max-w-4xl relative text-black dark:text-white;
-      @apply grid gap-8 auto-rows-min;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      @apply flex-1 p-8 bg-white dark:bg-dark-700 max-w-4xl relative text-black dark:text-white;
+      @apply grid gap-4 auto-rows-min;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
 
       @media (max-width: 640px) {
-        @apply p-6 gap-6;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        @apply p-4 gap-3;
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
       }
 
       li {
-        @apply flex items-center flex-col gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-500 p-5 rounded-xl transition-all;
-        @apply justify-start min-h-[140px];
+        @apply flex items-center flex-col gap-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-500 p-3 rounded-xl transition-all;
+        @apply justify-start min-h-[120px];
 
         img {
-          @apply object-contain object-center size-20 relative transition-transform hover:scale-105;
+          @apply object-contain object-center size-16 relative transition-transform hover:scale-105;
         }
 
         p {
@@ -513,43 +513,43 @@ body {
   }
 
   #mobile-finder {
-    @apply w-screen h-screen bg-white dark:bg-dark-700 select-none absolute top-0 z-60 pt-20 sm:hidden overflow-y-auto;
+    @apply w-screen h-screen bg-white dark:bg-dark-700 select-none absolute top-0 z-60 pt-16 sm:hidden overflow-y-auto overflow-x-hidden;
 
     .breadcrumb {
       @apply flex items-center px-5 py-3 bg-gray-50 dark:bg-dark-300 border-b border-gray-200 dark:border-dark-500;
     }
 
     .finder-gallery {
-      @apply px-6 py-6;
+      @apply px-4 py-4;
 
       ul {
-        @apply grid gap-6;
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        @apply grid gap-4;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
 
         @media (min-width: 375px) {
-          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
         }
 
         @media (min-width: 480px) {
-          grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
         }
 
         li {
           @apply cursor-pointer transition-transform active:scale-95;
 
           .finder-item {
-            @apply flex flex-col items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-dark-500 transition-all;
+            @apply flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-500 transition-all;
 
             .folder-icon {
-              @apply flex items-center justify-center w-20 h-20 rounded-xl bg-blue-50 dark:bg-blue-900/20;
+              @apply flex items-center justify-center w-16 h-16 rounded-lg bg-blue-50 dark:bg-blue-900/20;
             }
 
             .file-icon {
-              @apply w-20 h-20 object-contain rounded-lg;
+              @apply w-16 h-16 object-contain rounded-lg;
             }
 
             .item-name {
-              @apply text-xs text-center text-black dark:text-white font-medium line-clamp-2 w-full px-1;
+              @apply text-xs text-center text-black dark:text-white font-medium line-clamp-2 w-full;
             }
           }
         }
