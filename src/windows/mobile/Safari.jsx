@@ -1,11 +1,9 @@
-import { blogPosts } from "#constants";
 import {
   BookOpen,
   ChevronLeft,
   ChevronRight,
   Copy,
   Mic,
-  MoveRight,
   Search,
   Share,
 } from "lucide-react";
@@ -19,24 +17,21 @@ const MobileSafariContent = () => {
       <MobileWindowHeader windowKey="safari" title="Safari" />
 
       <div className="blog">
-        <h2>My Developer Blog</h2>
+        <h2>Featured Video</h2>
 
         <div className="space-y-8">
-          {blogPosts.map(({ id, image, title, date, link }) => (
-            <div key={id} className="blog-post">
-              <div className="col-span-2">
-                <img src={image} alt={title} />
-              </div>
-
-              <div className="content">
-                <p>{date}</p>
-                <h3>{title}</h3>
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                  Check out the full post <MoveRight className="icon-hover" />
-                </a>
-              </div>
-            </div>
-          ))}
+          <div className="aspect-video w-full">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/2w42oHuptQQ"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
         </div>
       </div>
 
